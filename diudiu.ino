@@ -17,6 +17,8 @@ long num = 0;
 #define COM3 12
 #define COM4 13
 
+#define M_OR_K 15
+
 unsigned char table[10][8] =
 {
   {0, 0, 1, 1, 1, 1, 1, 1}, //0
@@ -66,6 +68,10 @@ void loop()
     num ++;
   }
   long n = num / 23 * 44 / 100;
+
+  if (digitalRead(M_OR_K) == HIGH)
+    n = n / 1000;
+
   Display(1, n % 10);
   Display(2, (n % 100) / 10);
   Display(3, (n % 1000) / 100);
